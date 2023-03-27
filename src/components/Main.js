@@ -1,20 +1,31 @@
-import heroImage from  '../images/restauranfood.jpg'
+import Hero from './Hero'
+import FilterPills from './mobile/FilterPills';
+import MobileFoodMenu from './mobile/MobileFoodMenu';
+import { useDeviceContext } from '../context/deviceContext';
+import Specials from './Specials';
+
 
 export default function Main() {
+
+  const viewport = useDeviceContext();
+
+  if(viewport.isMobile){
+
+    console.log('its mobile');
+
+    return (
+      <main>
+        <Hero />
+        <FilterPills />
+        <MobileFoodMenu />
+      </main>
+    );
+
+  }
   return (
     <main>
-      <div className='hero'>
-      <article>
-        <h1>Little Lemon</h1>
-        <h2>Chicago</h2>
-        <p>
-          We are a family owned Mediterranian restaurant focused on traditional
-          recepies served with a modern twist
-        </p>
-        <button className='action-button'>Reserve a table </button>
-      </article>
-      <img src={heroImage} alt="a server holding plates in a tray" />
-      </div>
+      <Hero />
+      <Specials />
     </main>
   );
 }
