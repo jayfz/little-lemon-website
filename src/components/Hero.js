@@ -1,7 +1,16 @@
+import { useNavigate } from "react-router-dom";
 import { useDeviceContext } from "../context/deviceContext";
 import heroImage from "../images/restauranfood.jpg";
 
+
+
 export default function Hero() {
+
+  const navigate = useNavigate();
+
+  const reserveATableHandler = () => {
+    navigate("/booking")
+  }
 
   const viewport = useDeviceContext();
   return (
@@ -14,7 +23,7 @@ export default function Hero() {
           recepies served with a modern twist
         </p>
         {viewport.isMobile && <img src={heroImage} alt="a server holding plates in a tray" />}
-        <button className="action-button">Reserve a table </button>
+        <button className="action-button" onClick={reserveATableHandler}>Reserve a table </button>
       </article>
       {!viewport.isMobile && <img src={heroImage} alt="a server holding plates in a tray" />}
     </div>
